@@ -1,0 +1,77 @@
+Generate Non-HT Format DSSS Waveform
+
+
+nht = wlanNonHTConfig('Modulation','DSSS','DataRate','2Mbps')
+bits = [1;0;0;1;1];
+nhtDSSSWaveform = wlanWaveformGenerator(bits,nht, ...
+    'NumPackets',2,'IdleTime',5e-6);
+fs = 11e6; % Set sampling frequency equal to the channel bandwidth
+time = ([0:length(nhtDSSSWaveform)-1]/fs)*1e6;
+plot(time,real(nhtDSSSWaveform),'.')
+xlabel ('Time (microseconds)');
+ylabel('Re[nhtDSSSWaveform]');
+axis([8190,8200,-1.1,1.1])
+
+
+Generate Non-HT Format OFDM Waveform
+
+
+
+nht = wlanNonHTConfig
+bits = [1;0;0;1;1];
+nhtWaveform = wlanWaveformGenerator(bits,nht, ...
+    'NumPackets',4,'IdleTime',45e-6);
+fs = 20e6; % Set sampling frequency equal to the channel bandwidth
+time = ([0:length(nhtWaveform)-1]/fs)*1e6;
+plot(time,abs(nhtWaveform))
+xlabel ('Time (microseconds)');
+ylabel('Magnitude');
+
+
+
+Generate HT Format Waveform
+
+
+ht = wlanHTConfig
+bits = [1;0;0;1;1];
+htWaveform = wlanWaveformGenerator(bits,ht, ...
+    'NumPackets',5,'IdleTime',30e-6);
+fs = 20e6; % Set sampling frequency equal to the channel bandwidth
+time = ([0:length(htWaveform)-1]/fs)*1e6;
+plot(time,abs(htWaveform))
+xlabel ('Time (microseconds)');
+ylabel('Magnitude');
+
+
+
+
+Generate VHT Format Waveform
+
+vht = wlanVHTConfig
+bits = [1;0;0;1;1];
+vhtWaveform = wlanWaveformGenerator(bits,vht, ...
+    'NumPackets',5,'IdleTime',20e-6);
+fs = 80e6; % Set sampling frequency equal to the channel bandwidth
+time = ([0:length(vhtWaveform)-1]/fs)*1e6;
+plot(time,abs(vhtWaveform))
+xlabel ('Time (microseconds)');
+ylabel('Magnitude');
+
+Generate HE Format Waveform
+
+
+he=heSUConfig;
+bits = [1;0;0;1;1];
+heWaveform =heWaveformGenerator(bits,he, ...
+    'NumPackets',5,'IdleTime',10e-6);
+%fs = heSampleRate(he);
+fs = 160e6; % Set sampling frequency equal to the channel bandwidth
+time = ([0:length(heWaveform)-1]/fs)*1e6;
+plot(time,abs(heWaveform))
+xlabel ('Time (microseconds)');
+ylabel('Magnitude');
+
+
+
+
+
